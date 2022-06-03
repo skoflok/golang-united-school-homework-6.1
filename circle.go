@@ -1,6 +1,6 @@
 package golang_united_school_homework
 
-const pi = 3.14
+import "math"
 
 // Circle must satisfy to Shape interface
 type Circle struct {
@@ -8,9 +8,9 @@ type Circle struct {
 }
 
 func (c *Circle) CalcPerimeter() float64 {
-	return 2 * pi * c.Radius
+	return 2 * math.Pi * c.Radius
 }
 
 func (c *Circle) CalcArea() float64 {
-	return pi * c.Radius * c.Radius
+	return math.Pi * c.Radius * c.Radius
 }
