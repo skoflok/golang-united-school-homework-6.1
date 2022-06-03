@@ -55,8 +55,9 @@ func (b *box) ReplaceByIndex(i int, shape Shape) (Shape, error) {
 	if ok, e := b.checkIndex(i); ok == false && e != nil {
 		return nil, e
 	}
+	old := b.shapes[i]
 	b.shapes[i] = shape
-	return shape, nil
+	return old, nil
 }
 
 // SumPerimeter provides sum perimeter of all shapes in the list.
@@ -121,6 +122,16 @@ func isCircle(t interface{}) bool {
 }
 
 func main() {
-	c := Circle{Radius: 10}
-	fmt.Println(c)
+	circle := &Circle{Radius: 20}
+	triangle := &Triangle{Side: 30}
+	rectangle := &Rectangle{Height: 10, Weight: 20}
+	rectangle2 := &Rectangle{Height: 10, Weight: 20}
+	box := NewBox(3)
+
+	_ = box.AddShape(circle)
+	_ = box.AddShape(triangle)
+	_ = box.AddShape(rectangle)
+	_ = box.AddShape(rectangle2)
+	actualShape, actualErr := box.ReplaceByIndex(3, rectangle2)
+	fmt.Println(actualShape, actualErr)
 }
