@@ -1,14 +1,13 @@
-package main
+package golang_united_school_homework
 
 import (
-	"box/shapes"
 	"errors"
 	"fmt"
 )
 
 // box contains list of shapes and able to perform operations on them
 type box struct {
-	shapes         []shapes.Shape
+	shapes         []Shape
 	shapesCapacity int // Maximum quantity of shapes that can be inside the box.
 }
 
@@ -21,7 +20,7 @@ func NewBox(shapesCapacity int) *box {
 
 // AddShape adds shape to the box
 // returns the error in case it goes out of the shapesCapacity range.
-func (b *box) AddShape(shape shapes.Shape) error {
+func (b *box) AddShape(shape Shape) error {
 	if len(b.shapes) == b.shapesCapacity {
 		return errors.New("It goes out of the shapesCapacity range")
 	}
@@ -31,7 +30,7 @@ func (b *box) AddShape(shape shapes.Shape) error {
 
 // GetByIndex allows getting shape by index
 // whether shape by index doesn't exist or index went out of the range, then it returns an error
-func (b *box) GetByIndex(i int) (shapes.Shape, error) {
+func (b *box) GetByIndex(i int) (Shape, error) {
 	if ok, e := b.checkIndex(i); ok == false && e != nil {
 		return nil, e
 	}
@@ -41,7 +40,7 @@ func (b *box) GetByIndex(i int) (shapes.Shape, error) {
 
 // ExtractByIndex allows getting shape by index and removes this shape from the list.
 // whether shape by index doesn't exist or index went out of the range, then it returns an error
-func (b *box) ExtractByIndex(i int) (shapes.Shape, error) {
+func (b *box) ExtractByIndex(i int) (Shape, error) {
 	if ok, e := b.checkIndex(i); ok == false && e != nil {
 		return nil, e
 	}
@@ -52,7 +51,7 @@ func (b *box) ExtractByIndex(i int) (shapes.Shape, error) {
 
 // ReplaceByIndex allows replacing shape by index and returns removed shape.
 // whether shape by index doesn't exist or index went out of the range, then it returns an error
-func (b *box) ReplaceByIndex(i int, shape shapes.Shape) (shapes.Shape, error) {
+func (b *box) ReplaceByIndex(i int, shape Shape) (Shape, error) {
 	if ok, e := b.checkIndex(i); ok == false && e != nil {
 		return nil, e
 	}
@@ -117,7 +116,7 @@ func (b *box) checkIndex(index int) (bool, error) {
 
 func isCircle(t interface{}) bool {
 	switch t.(type) {
-	case shapes.Circle:
+	case Circle:
 		return true
 	default:
 		return false
@@ -125,6 +124,6 @@ func isCircle(t interface{}) bool {
 }
 
 func main() {
-	c := shapes.Circle{Radius: 10}
+	c := Circle{Radius: 10}
 	fmt.Println(c)
 }
