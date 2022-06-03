@@ -112,7 +112,7 @@ func (b *box) checkIndex(index int) (bool, error) {
 	return true, nil
 }
 
-func isCircle(t interface{}) bool {
+func isCircle(t *Shape) bool {
 	switch t.(type) {
 	case Circle:
 		return true
