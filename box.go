@@ -1,4 +1,4 @@
-package box
+package main
 
 import (
 	"box/shapes"
@@ -90,13 +90,10 @@ func (b *box) SumArea() float64 {
 func (b *box) RemoveAllCircles() error {
 	exist := false
 	for i, v := range b.shapes {
-
-		t := v.(type)
-		if t == shapes.Circle {
+		if isCircle(v) == true {
 			b.ExtractByIndex(i)
 			exist = true
 		}
-
 	}
 
 	if exist == true {
@@ -116,6 +113,15 @@ func (b *box) checkIndex(index int) (bool, error) {
 	}
 
 	return true, nil
+}
+
+func isCircle(t interface{}) bool {
+	switch t.(type) {
+	case shapes.Circle:
+		return true
+	default:
+		return false
+	}
 }
 
 func main() {
