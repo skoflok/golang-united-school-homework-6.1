@@ -55,10 +55,7 @@ func (b *box) ReplaceByIndex(i int, shape Shape) (Shape, error) {
 	if ok, e := b.checkIndex(i); ok == false && e != nil {
 		return nil, e
 	}
-	tail := b.shapes[i+1:]
-	b.shapes = append(b.shapes[:i], shape)
-	b.shapes = append(b.shapes, tail...)
-
+	b.shapes[i] = shape
 	return shape, nil
 }
 
