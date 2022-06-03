@@ -87,7 +87,7 @@ func (b *box) SumArea() float64 {
 func (b *box) RemoveAllCircles() error {
 	exist := false
 	for i, v := range b.shapes {
-		if isCircle(&v) == true {
+		if isCircle(v) == true {
 			b.ExtractByIndex(i)
 			exist = true
 		}
@@ -112,7 +112,7 @@ func (b *box) checkIndex(index int) (bool, error) {
 	return true, nil
 }
 
-func isCircle(t *Shape) bool {
+func isCircle(t Shape{}) bool {
 	switch t.(type) {
 	case Circle:
 		return true
